@@ -59,3 +59,36 @@ def max_sub_array_of_size_k(k, arr):
             res = max(res, curr_sum) 
     return res
 ```
+
+### String Anagrams
+Given a string and a pattern, find all anagrams of the pattern in the given string.
+Return a list of starting indices of the anagrams of the pattern in the given string.
+```
+from collections import Counter
+def find_string_anagrams(str, pattern):
+    result_indexes = []
+    window_start = 0
+    matched = 0
+    pattern_counter = Counter(list(pattern))
+    for window_end in range(len(str)):
+        char_end = str[window_end]
+        if char_end in pattern_counter:
+            pattern_counter[char_end] -= 1
+        if pattern_counter[char_end] == 0:
+            matched += 1
+    
+        if window_end >= len(pattern):
+            assert window_end - window_start + 1 == len(pattern) + 1
+            char_start = str[window_start]
+            if char_start in pattern_counter:
+                if pattern_counter[char_start] == 0:
+                    matched -= 1
+                pattern_counter[char_start] += 1
+      
+            window_start += 1
+    
+        if matched == len(pattern):
+            result_indexes.append(window_start)
+
+    return result_indexes
+```
