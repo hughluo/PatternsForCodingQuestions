@@ -37,4 +37,25 @@ def sliding_window_for_not_fixed_window_size():
 ## Tipps
 * collections.Counter will be useful.
 
-
+## Examples
+### Maximum Sum Subarray of Size K
+Given an array of positive numbers and a positive number ‘k’, find the maximum sum of any contiguous subarray of size ‘k’.
+```
+def max_sub_array_of_size_k(k, arr):
+    window_start = 0
+    res = 0
+    curr_sum = 0
+    
+    for window_end in range(len(arr)):
+        num_end = arr[window_end]
+        curr_sum += num_end
+        
+        if window_end >= k:
+            num_start = arr[window_start]
+            curr_sum -= num_start
+            window_start += 1
+        
+        if window_end >= k - 1:
+            res = max(res, curr_sum) 
+    return res
+```
