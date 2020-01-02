@@ -40,6 +40,8 @@ def sliding_window_for_not_fixed_window_size():
 ## Examples
 ### Maximum Sum Subarray of Size K
 Given an array of positive numbers and a positive number ‘k’, find the maximum sum of any contiguous subarray of size ‘k’.
+
+Return the maximum sum.
 ```
 def max_sub_array_of_size_k(k, arr):
     window_start = 0
@@ -62,6 +64,7 @@ def max_sub_array_of_size_k(k, arr):
 
 ### String Anagrams
 Given a string and a pattern, find all anagrams of the pattern in the given string.
+
 Return a list of starting indices of the anagrams of the pattern in the given string.
 ```
 from collections import Counter
