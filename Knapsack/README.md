@@ -7,7 +7,7 @@
 ## Bruteforce
 ## Top Down with Memoization
 ## Bottom Up
-* can often improve the space complexity.
+* can often furthermore improve the space complexity.
 
 
 
