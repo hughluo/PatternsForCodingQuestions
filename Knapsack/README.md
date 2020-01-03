@@ -6,6 +6,7 @@ Given two integer arrays to represent weights and profits of ‘N’ items, find
 
 Return the maximum profits.
 
+* Solution 1: Top Down with Memoization
 ```
 def solve_knapsack(profits, weights, capacity):
     dp = [ [-1 for i in range(capacity + 1)] for j in range(len(profits)) ] 
@@ -28,6 +29,7 @@ def solve_knapsack(profits, weights, capacity):
     return helper(0, capacity)
 ```
 
+* Solution 2: Bottom Up
 ```
 def solve_knapsack(profits, weights, capacity):
     dp = [ [0 for i in range(capacity + 1)] for j in range(len(profits))]
