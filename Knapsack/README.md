@@ -1,5 +1,16 @@
 # 0/1 Knapsack
 
+* Always start crack the question by explaining Brute-force and complexity (i.e For Knapsack, the brute-force approach has O(2^n) time complexity, since we have to choose yes/no for each element)
+* Top down with memoization
+* Bottom up using an n-dimension array
+
+## Bruteforce
+## Top Down with Memoization
+## Bottom Up
+* can often improve the space complexity.
+
+
+
 ## Examples
 ### 0/1 Knapsack
 Given two integer arrays to represent weights and profits of ‘N’ items, find a subset of these items which will give us maximum profit such that their cumulative weight is not more than a given number ‘C’. Each item can only be selected once, which means either we put an item in the knapsack or we skip it.
