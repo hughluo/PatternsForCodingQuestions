@@ -62,3 +62,28 @@ def solve_knapsack(profits, weights, capacity):
             dp[index][used_capacity] = max(profit_exclude, profit_include)
     return dp[-1][-1]
 ```
+
+### Equal Subset Sum
+Given a set of positive numbers, find if we can partition it into two subsets such that the sum of elements in both subsets is equal.
+
+Return `True` of `False`.
+
+```
+def can_partition(num):
+    sum_all = sum(num)
+    if sum(num) % 2 != 0:
+        return False
+    sum_half = sum_all // 2
+    dp = [False for i in range(sum_half + 1)]
+    
+    for n in num:
+        for sum_a, reachable in enumerate(dp):
+            if sum_a == n:
+                reachable = True
+            if reachable and sum_a + n <= sum_half:
+                dp[sum_a + n] = True
+            if dp[-1]:
+                return True
+
+    return False
+```
