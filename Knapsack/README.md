@@ -1,6 +1,6 @@
 # 0/1 Knapsack
 
-* Always start crack the question by explaining Brute-force and complexity (i.e For Knapsack, the brute-force approach has O(2^n) time complexity, since we have to choose yes/no for each element)
+* Always start crack the question by explaining Brute-force and complexity (i.e For Knapsack, the brute-force approach has O(2^n) (power of two) exponential time complexity, since we have to choose yes/no for each element)
 * Top down with memoization
 * Bottom up using an n-dimension array
 
