@@ -45,21 +45,20 @@ def solve_knapsack(profits, weights, capacity):
 def solve_knapsack(profits, weights, capacity):
     dp = [ [0 for i in range(capacity + 1)] for j in range(len(profits))]
     for index in range(len(profits)):
-        for curr_capacity in range(capacity + 1):
-            if curr_capacity == 0:
+        for used_capacity in range(capacity + 1):
+            if used_capacity == 0:
                 continue
             if index == 0:
-                dp[index][curr_capacity] = profits[index]
+                dp[index][used_capacity] = profits[index]
                 continue
             
-            profit_exclude = dp[index-1][curr_capacity]
+            profit_exclude = dp[index-1][used_capacity]
             
             profit_include = 0            
-            capacity_without_curr = curr_capacity - weights[index]
-            if capacity_without_curr >= 0:
-                profit_include = profits[index] + dp[index-1][capacity_without_curr]
+            capacity_minus_curr = used_capacity - weights[index]
+            if capacity_minus_curr >= 0:
+                profit_include = profits[index] + dp[index-1][capacity_minus_curr]
 
-            dp[index][curr_capacity] = max(profit_exclude, profit_include)
-            
+            dp[index][used_capacity] = max(profit_exclude, profit_include)
     return dp[-1][-1]
 ```
