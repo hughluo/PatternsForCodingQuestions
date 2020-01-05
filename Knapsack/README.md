@@ -4,10 +4,12 @@
 * Top down with memoization
 * Bottom up using an n-dimension array
 
+
 ## Bruteforce
 ## Top Down with Memoization
 ## Bottom Up
-* can often furthermore improve the space complexity.
+* can often furthermore improve the space complexity, compress an 2D-array to 1D-array
+* when doing this compression, we may need to update array **reversely** to avoid error. (i.e. if we update 2nd and then 3rd, when we are at 2nd and we already updated 3rd, therefore, when we are at 3rd, 3rd is modified and different than the last round)
 
 
 
