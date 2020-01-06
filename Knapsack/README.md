@@ -89,3 +89,56 @@ def can_partition(num):
 
     return False
 ```
+
+### Path with Maximum Sum
+Find the path with the maximum sum in a given binary tree. Write a function that returns the maximum sum. A path can be defined as a sequence of nodes between any two nodes and doesn’t necessarily pass through the root.
+```
+import math
+
+
+class TreeNode:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def find_maximum_path_sum(root):
+    res = float('-inf')
+    def helper(curr):
+        if curr is None:
+            return 0
+        val_left = helper(curr.left)
+        val_right = helper(curr.right)
+        nonlocal res
+        res = max(res, curr.val, curr.val + val_left + val_right)
+        val_chain = curr.val + max(val_left, val_right)
+        return val_chain
+
+    helper(root)
+    return res
+
+def main():
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    print("Maximum Path Sum: " + str(find_maximum_path_sum(root)))
+    assert find_maximum_path_sum(root) == 6
+    
+    root.left.left = TreeNode(1)
+    root.left.right = TreeNode(3)
+    root.right.left = TreeNode(5)
+    root.right.right = TreeNode(6)
+    root.right.left.left = TreeNode(7)
+    root.right.left.right = TreeNode(8)
+    root.right.right.left = TreeNode(9)
+    print("Maximum Path Sum: " + str(find_maximum_path_sum(root)))
+    assert find_maximum_path_sum(root) == 31
+
+    root = TreeNode(-1)
+    root.left = TreeNode(-3)
+    print("Maximum Path Sum: " + str(find_maximum_path_sum(root)))
+    assert find_maximum_path_sum(root) == -1
+
+if __name__ == "__main__":
+    main()
+```
