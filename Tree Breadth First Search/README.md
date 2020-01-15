@@ -109,3 +109,84 @@ def main():
 main()
 
 ```
+### Tree Boundary
+Given a binary tree, return an array containing all the boundary nodes of the tree in an anti-clockwise direction.
+
+
+The boundary of a tree contains all nodes in the left view, all leaves, and all nodes in the right view. Please note that there should not be any duplicate nodes. For example, the root is only included in the left view; similarly, if a level has only one node we should include it in the left view.
+```
+from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+
+
+def find_tree_boundary(root):
+    result = []
+    left_view = []
+    leafs = []
+    right_view = []
+
+    queue = deque()
+    queue.append(root)
+    while queue:
+        level_node_count = len(queue)
+        for i in range(level_node_count):
+            curr_node = queue.popleft()
+            if i == 0:
+                left_view.append(curr_node)
+            elif i == level_node_count - 1:  # `elif` instead of `if` is important to avoid duplicate
+                right_view.append(curr_node)
+
+            if curr_node.left is not None:
+                queue.append(curr_node.left)
+            if curr_node.right is not None:
+                queue.append(curr_node.right)
+
+    stack = []
+    stack.append(root)
+    while stack:
+        curr_node = stack.pop()
+        if curr_node.right is not None:
+            stack.append(curr_node.right)
+        if curr_node.left is not None:
+            stack.append(curr_node.left)
+        if curr_node.left is None and curr_node.right is None:
+            leafs.append(curr_node)
+
+    result = left_view + leafs[1:] + list(reversed(right_view))[1:]
+    return result
+
+
+def main():
+    root = TreeNode(12)
+    root.left = TreeNode(7)
+    root.right = TreeNode(1)
+    root.left.left = TreeNode(4)
+    root.left.left.left = TreeNode(9)
+    root.left.right = TreeNode(3)
+    root.left.right.left = TreeNode(15)
+    root.right.left = TreeNode(10)
+    root.right.right = TreeNode(5)
+    root.right.right.left = TreeNode(6)
+    result = find_tree_boundary(root)
+    print("Tree boundary: ", end='')
+    for node in result:
+        print(str(node.val) + " ", end='')
+
+    root = TreeNode(12)
+    root.right = TreeNode(1)
+    root.right.left = TreeNode(10)
+    root.right.right = TreeNode(5)
+    result = find_tree_boundary(root)
+    print("Tree boundary: ", end='')
+    for node in result:
+        print(str(node.val) + " ", end='')
+
+
+main()
+
+```
