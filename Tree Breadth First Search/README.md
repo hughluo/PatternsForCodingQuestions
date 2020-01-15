@@ -3,8 +3,7 @@
 Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach. We will use a Queue to keep track of all the nodes of a level before we jump onto the next level. This also means that the space complexity of the algorithm will be O(W)O(W), where ‘W’ is the maximum number of nodes on any level.
 
 ## Examples
-###
-Connect All Level Order Siblings
+### Connect All Level Order Siblings
 Given a binary tree, connect each node with its level order successor. The last node of each level should point to the first node of the next level.
 ```
 from collections import deque
