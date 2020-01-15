@@ -1,5 +1,5 @@
 # Sliding Window
-## Procedure
+## Pattern
 
 * first, figure out if fixed window_size?
 * current window_size is window_end - window_start + 1
