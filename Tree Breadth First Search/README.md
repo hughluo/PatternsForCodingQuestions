@@ -1,6 +1,25 @@
 # Tree Breadth First Search
 
-Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach. We will use a Queue to keep track of all the nodes of a level before we jump onto the next level. This also means that the space complexity of the algorithm will be O(W)O(W), where ‘W’ is the maximum number of nodes on any level.
+Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach. We will use a Queue to keep track of all the nodes of a level before we jump onto the next level. This also means that the space complexity of the algorithm will be O(W), where ‘W’ is the maximum number of nodes on any level.
+
+## Pattern
+```
+queue = deque()
+queue.append(root)
+while queue:
+    level_node_count = len(queue) # number of nodes for current tree level
+    for i in range(level_node_count): # loop over nodes of current tree level
+        curr_node = queue.popleft()
+        
+        # do something
+        ...
+        
+        # add children to queue
+        if curr_node.left is not None:
+            queue.append(curr_node.left)
+        if curr_node.right is not None:
+            queue.append(curr_node.right)
+```
 
 ## Examples
 ### Connect All Level Order Siblings
